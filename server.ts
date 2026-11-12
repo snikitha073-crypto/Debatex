@@ -587,7 +587,7 @@ app.post('/api/debate/respond/stream', async (req, res) => {
   // Model cascade: try fast low-latency models first, resiliently fall back if Google returns 503 high demand
   const modelsToAttempt = ['gemini-3.1-flash-lite', 'gemini-3.5-flash', 'gemini-3.8-flash'];
   let streamSucceeded = false;
-  const ai = new GoogleGenAI();
+  const ai = new GoogleGenAI({ apiKey });
 
   for (const model of modelsToAttempt) {
     if (!isClientConnected) break;
@@ -682,7 +682,7 @@ app.post('/api/debate/respond', async (req, res) => {
   }
 
   const modelsToAttempt = ['gemini-3.1-flash-lite', 'gemini-3.5-flash', 'gemini-3.8-flash'];
-  const ai = new GoogleGenAI();
+  const ai = new GoogleGenAI({ apiKey });
 
   for (const model of modelsToAttempt) {
     try {
@@ -725,7 +725,7 @@ app.post('/api/debate/evaluate', async (req, res) => {
   }
 
   try {
-    const ai = new GoogleGenAI();
+    const ai = new GoogleGenAI({ apiKey });
     const transcript = (messages || [])
       .map((m: any) => `${m.sender === 'user' ? 'User' : characterName}: ${m.text}`)
       .join('\n\n');

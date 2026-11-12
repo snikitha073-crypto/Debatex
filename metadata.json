@@ -1,0 +1,8 @@
+{
+  "name": "DebateX",
+  "description": "Interactive AI debate platform where users debate thought-provoking topics against distinct AI personalities.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
